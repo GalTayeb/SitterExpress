@@ -9,3 +9,6 @@ def map(request):
 
 def choice(request):
     return render(request, 'babySitter/choice.html', {'title': 'Choice'})
+
+def about(request):
+    return render(request, 'babySitter/about.html', {'title': 'About'})
