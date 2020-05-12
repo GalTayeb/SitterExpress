@@ -5,14 +5,21 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
     email = forms.EmailField()
+    Gender = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = forms.ChoiceField(choices=Gender)
     birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
     telephone = forms.CharField()
-    gender = forms.CharField(help_text='Required. Male or Female')
 
     class Meta:
         model = User
-        fields = ['username','first_name', 'last_name', 'email','telephone','gender', 'birth_date', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'telephone', 'gender', 'birth_date',
+                  'password1', 'password2']
 
 
 class UserUpdateForm(forms.ModelForm):
