@@ -1,0 +1,15 @@
+{% extends "babySitter/base.html" %}
+{% block content %}
+    <div class = "main">
+        <h1>Resgister type</h1>
+        <h3>What are you looking for ?</h3>
+        <br/><br/>
+            <div class="form-group">
+                <a href="{% url 'register' %}" class="btn btn-outline-info">I'm a BabySitter</a>
+            </div>
+        <br/>
+            <div class="form-group">
+                <a href="{% url 'register' %}" class="btn btn-outline-info">I'm looking for a BabySitter</a>
+            </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "babySitter/base.html" %}
+{% block content %}
+    <div class = "main">
+        <h1>Welcome to Sitter-Express !!</h1>
+        <h3>Do you have an account ?</h3>
+        <br/><br/>
+            <div class="form-group">
+                <a href="{% url 'login' %}" class="btn btn-outline-info" >I have an account</a>
+            </div>
+        <br/>
+            <div class="form-group">
+                <a href="{% url 'babySitter-choice' %}" class="btn btn-outline-info">I don't have an account</a>
+            </div>
+    </div>
+{% endblock content %}
