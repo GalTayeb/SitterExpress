@@ -12,3 +12,6 @@ def choice(request):
 
 def about(request):
     return render(request, 'babySitter/about.html', {'title': 'About'})
+
+def about(request):
+    return render(request, 'babySitter/about.html', {'title': 'About'})
