@@ -8,13 +8,17 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
             form.save()
-            messages.success(request, f'Your account has been created! You are now able to log in')
+            username = form.cleaned_data.get('username')
+            gender = form.cleaned_data['gender']
+            phone = form.cleaned_data['phone']
+            birth_date = form.cleaned_data['birth_date']
+            messages.success(request, f'Your account has been created! You are now able to log in...')
             return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
 
 @login_required
 def profile(request):
@@ -26,7 +30,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your account has been updated !!')
             return redirect('profile')
 
     else:
