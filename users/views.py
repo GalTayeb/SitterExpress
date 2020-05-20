@@ -9,9 +9,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
-            gender = form.cleaned_data.get('gender')
-            phone = form.cleaned_data.get('phone')
-            birth_date = form.cleaned_data.get('birth_date')
             form.save()
             messages.success(request, f'Your account has been created! You are now able to log in...')
             return redirect('login')
