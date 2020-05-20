@@ -9,6 +9,7 @@ class UserRegisterForm(UserCreationForm):
     last_name = forms.CharField()
     email = forms.EmailField()
     Gender = (
+        ('', 'Choose: Male / Female'),
         ('M', 'Male'),
         ('F', 'Female'),
     )
