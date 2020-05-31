@@ -18,3 +18,6 @@ def about(request):
 
 def history(request):
     return render(request, 'babySitter/history.html', {'title': 'History'})
+
+def order(request):
+    return render(request, 'babySitter/order.html', {'title': 'order'})
