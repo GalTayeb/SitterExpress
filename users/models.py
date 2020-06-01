@@ -4,14 +4,16 @@ from PIL import Image
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(blank=True, max_length=10)
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE, null=True)
     GENDER_CHOICES = (
         ('', '---'),
         ('M', 'Male'),
         ('F', 'Female'),
     )
     gender = models.CharField(blank=True, max_length=10, choices=GENDER_CHOICES)
+    age = models.CharField(blank=True, max_length=3)
+    id_number = models.CharField(blank=True, max_length=9)
+    phone_number = models.CharField(blank=True, max_length=10)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):

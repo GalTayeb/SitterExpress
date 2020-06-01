@@ -10,6 +10,12 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
 
+class UserProfileInfoForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
+
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -17,14 +23,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    phone = forms.CharField()
-    GENDER_CHOICES = (
-        ('', '---'),
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    gender = forms.ChoiceField(choices=GENDER_CHOICES)
-
     class Meta:
         model = Profile
-        fields = ['phone', 'gender', 'image']
+        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
