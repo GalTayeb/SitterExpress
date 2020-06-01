@@ -37,8 +37,8 @@
             <div class="navbar-nav">
               {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'babySitter-order' %}">Available orders</a>
-               <a class="nav-item nav-link" href="{% url 'babySitter-history' %}">History</a>
+{#                <a class="nav-item nav-link" href="{% url 'babySitter-order' %}">Available orders</a>#}
+{#                <a class="nav-item nav-link" href="{% url 'babySitter-history' %}">History</a>#}
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
@@ -85,5 +85,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
