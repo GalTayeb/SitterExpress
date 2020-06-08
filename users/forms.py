@@ -5,42 +5,24 @@ from .models import Profile
 
 
 class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
-    Gender = (
-        ('', 'Choose: Male / Female'),
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    gender = forms.ChoiceField(choices=Gender)
-    phone = forms.CharField()
-    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
-
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'phone', 'birth_date',
-                  'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+
+
+class UserProfileInfoForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
 
 
 class UserUpdateForm(forms.ModelForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
-    Gender = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    gender = forms.ChoiceField(choices=Gender)
-    phone = forms.CharField()
-    birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
-
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'phone', 'birth_date']
+        fields = ['first_name', 'last_name', 'email']
 
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
