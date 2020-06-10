@@ -1,41 +1,263 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
     <div class = "main">
-        <h1>Available Orders</h1>
-        <br/>
-        <html>
-        <head>
-            <style>
-                .btn-group .button {
-                    background-color: #4CAF50; /* Green */
-                    border: 1px solid green;
-                    color: white;
-                    padding: 15px 32px;
-                    text-align: center;
-                    text-decoration: none;
-                    font-size: 16px;
-                    cursor: pointer;
-                    width: 150px;
-                    display: block;
-                }
 
-                .btn-group .button:not(:last-child) {
-                    border-bottom: none; /* Prevent double borders */
-                }
+        <h1>Available orders:</h1>
 
-                .btn-group .button:hover {
-                    background-color: #3e8e41;
-                }
-            </style>
-        </head>
-        <body>
-        <div class="btn-group">
+        <p>Aprrove orders here &#9989;</p>
+
+     <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup2 {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup3 {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup4 {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+
+.popup2 .popuptext2 {
+  visibility: hidden;
+  width: 160px;
+  background-color: #1f38af;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup3 .popuptext3 {
+  visibility: hidden;
+  width: 160px;
+  background-color: #af150d;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+.popup4 .popuptext4 {
+  visibility: hidden;
+  width: 160px;
+  background-color: #d822fc;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+
+
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup2 .popuptext2::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup3 .popuptext3::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup4 .popuptext4::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.popup2 .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.popup3 .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.popup4 .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+</style>
+</head>
+<body style="text-align:center">
+
+
+<ol>
+<div class="popup" onclick="myFunction()">Click me to Approve the Order 1!
+  <span class="popuptext" id="myPopup">Order 1 Aprroved!</span>
+</div>
+
+<div class="popup2" onclick="myFunction2()">Click me to Approve the Order 2!
+  <span class="popuptext2" id="myPopup2">Order 2 Aprroved!</span>
+</div>
+
+<div class="popup3" onclick="myFunction3()">Click me to Approve the Order 3!
+  <span class="popuptext3" id="myPopup3">Order 3 Aprroved!</span>
+</div>
+
+<div class="popup4" onclick="myFunction4()">Click me to Approve the Order 4!
+  <span class="popuptext4" id="myPopup4">Order 4 Aprroved!</span>
+</div>
+</ol>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+
+  var popup = document.getElementById("myPopup")  ;
+  popup.classList.toggle("show");
+}
+function myFunction2() {
+
+  var popup2 = document.getElementById("myPopup2")  ;
+  popup2.classList.toggle("show");
+}
+
+function myFunction3() {
+
+  var popup3 = document.getElementById("myPopup3")  ;
+  popup3.classList.toggle("show");
+}
+
+function myFunction4() {
+
+  var popup4 = document.getElementById("myPopup4")  ;
+  popup4.classList.toggle("show");
+}
+
+</script>
+
+
+</body>
+</html>
+
+
             <button class="button">01/05/2020</button>
             <button class="button">02/06/2020</button>
             <button class="button">03/07/2020</button>
             <button class="button">04/08/2020</button>
-        </div>
-        </body>
-        </html>
+
     </div>
 {% endblock content %}
