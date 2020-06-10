@@ -2,5 +2,40 @@
 {% block content %}
     <div class = "main">
         <h1>History</h1>
+        <br/>
+        <html>
+        <head>
+            <style>
+                .btn-group .button {
+                    background-color: #FF0000; /* Red */
+                    border: 1px solid darkred;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 16px;
+                    cursor: pointer;
+                    width: 150px;
+                    display: block;
+                }
+
+                .btn-group .button:not(:last-child) {
+                    border-bottom: none; /* Prevent double borders */
+                }
+
+                .btn-group .button:hover {
+                    background-color: #3e8e41;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="btn-group">
+            <button class="button">01/05/2020</button>
+            <button class="button">02/06/2020</button>
+            <button class="button">03/07/2020</button>
+            <button class="button">04/08/2020</button>
+        </div>
+        </body>
+        </html>
     </div>
 {% endblock content %}

@@ -15,7 +15,7 @@ def register(request):
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
-            profile.save()
+            #profile.save()
             messages.success(request, f'Your account has been created! You are now able to log in...')
             return redirect('profile')
     else:
