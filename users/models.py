@@ -5,12 +5,14 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE, null=True)
+
     GENDER_CHOICES = (
         ('', '---'),
         ('M', 'Male'),
         ('F', 'Female'),
     )
     gender = models.CharField(default='', max_length=10, choices=GENDER_CHOICES)
+
     age = models.CharField(default='', max_length=3)
     id_number = models.CharField(default='', max_length=9)
     phone_number = models.CharField(default='', max_length=10)
