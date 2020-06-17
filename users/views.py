@@ -12,14 +12,14 @@ def register(request):
 
         if u_form.is_valid() and p_form.is_valid():
             user = u_form.save()
-            user.set_password(user.password)
+            # user.set_password(user.password)
             user.save()
             profile = p_form.save(commit=False)
             profile.user = user
             profile.save()
             registered = True
             messages.success(request, f'Your account has been created! You are now able to log in...')
-            return redirect('profile')
+            return redirect('login')
 
         else:
             print(u_form.errors, p_form.errors)
