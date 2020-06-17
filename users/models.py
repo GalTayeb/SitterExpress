@@ -4,7 +4,7 @@ from PIL import Image
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     GENDER_CHOICES = (
         ('', '---'),
@@ -23,8 +23,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
-    def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
