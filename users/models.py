@@ -21,4 +21,4 @@ class Profile(models.Model):
     rating = models.PositiveSmallIntegerField(default=0, choices=one_to_five_choices)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return self.user.first_name + ' ' + self.user.last_name
