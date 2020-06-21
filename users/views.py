@@ -41,6 +41,9 @@ def profile(request):
             messages.success(request, f'Your account has been updated !!')
             return redirect('profile')
 
+        else:
+            print(u_form.errors, p_form.errors)
+
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
