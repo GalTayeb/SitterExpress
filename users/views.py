@@ -5,19 +5,16 @@ from .forms import UserForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
 
 
 def register(request):
-    registered = False
     if request.method == 'POST':
         u_form = UserForm(data=request.POST)
         p_form = UserProfileForm(data=request.POST)
 
         if u_form.is_valid() and p_form.is_valid():
             user = u_form.save()
-            # user.set_password(user.password)
             user.save()
             profile = p_form.save(commit=False)
             profile.user = user
             profile.save()
-            registered = True
             messages.success(request, f'Your account has been created! You are now able to log in...')
             return redirect('login')
 
@@ -29,7 +26,7 @@ def register(request):
         p_form = UserProfileForm()
 
     return render(request, 'users/register.html',
-                  {'u_form': u_form, 'p_form': p_form, 'registered': registered})
+                  {'u_form': u_form, 'p_form': p_form, 'title': 'Register'})
 
 
 @login_required
@@ -49,9 +46,5 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-
-    return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile.html',
+                  {'u_form': u_form, 'p_form': p_form, 'title': 'Profile'})

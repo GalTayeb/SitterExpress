@@ -127,5 +127,5 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'babySitter-map'
+LOGIN_REDIRECT_URL = 'babySitter-home'
 LOGIN_URL = 'login'

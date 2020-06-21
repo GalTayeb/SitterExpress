@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'babySitter/main.css' %}">
     <link rel="icon" href="{% static 'img/favicon.ico' %}">
+
     {% if title %}
         <title>Sitter Express - {{ title }}</title>
     {% else %}
@@ -27,7 +28,7 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               {% if user.is_authenticated and not user.is_superuser %}
-                <a class="nav-item nav-link" href="{% url 'babySitter-map' %}">Home Page</a>
+                <a class="nav-item nav-link" href="{% url 'babySitter-home' %}">Home Page</a>
               {% endif %}
               {% if not user.is_superuser %}
                 <a class="nav-item nav-link" href="{% url 'babySitter-about' %}">About Us</a>
@@ -65,20 +66,6 @@
             {% endfor %}
           {% endif %}
           {% block content %}{% endblock %}
-{#        </div>#}
-{#        <div class="col-md-4">#}
-{#          <div class="content-section">#}
-{#            <h3>Our Team</h3>#}
-{#            <p class='text-muted'>Supervisor : Aviv Shukrun#}
-{#              <ul class="list-group">#}
-{#                <li class="list-group-item list-group-item-light">Gal Tayeb</li>#}
-{#                <li class="list-group-item list-group-item-light">Omri Kimchy</li>#}
-{#                <li class="list-group-item list-group-item-light">Shachar Yosebashvili</li>#}
-{#                <li class="list-group-item list-group-item-light">Chen Niego</li>#}
-{#                <li class="list-group-item list-group-item-light">Liad Telner</li>#}
-{#              </ul>#}
-{#            </p>#}
-{#          </div>#}
         </div>
       </div>
     </main>
