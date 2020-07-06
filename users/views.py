@@ -1,52 +1,58 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from .forms import UserForm, UserProfileForm, UserUpdateForm, ProfileUpdateForm
+from django.views import View
+from .forms import FormParent, FormBabysitter, FormBabysitterProfile, FormParentProfile
 
 
-def register(request):
-    if request.method == 'POST':
-        u_form = UserForm(data=request.POST)
-        p_form = UserProfileForm(data=request.POST)
+class register(View):
+    def get(self, request, type):
+        b_form = FormBabysitter()
+        p_form = FormParent()
 
-        if u_form.is_valid() and p_form.is_valid():
-            user = u_form.save()
-            user.save()
-            profile = p_form.save(commit=False)
-            profile.user = user
-            profile.save()
+        return render(request, 'users/register.html',
+                      {'b_form': b_form, 'p_form': p_form, 'type': type, 'title': 'Register'})
+
+    def post(self, request, type):
+        b_form = FormBabysitter(request.POST)
+        p_form = FormParent(request.POST)
+
+        if b_form.is_valid():
+            b_user = b_form.save(commit=False)
+            b_user.is_babysitter = True
+            b_user.save()
             messages.success(request, f'Your account has been created! You are now able to log in...')
             return redirect('login')
 
-        else:
-            print(u_form.errors, p_form.errors)
+        if p_form.is_valid():
+            p_user = p_form.save(commit=False)
+            p_user.is_parent = True
+            p_user.save()
+            messages.success(request, f'Your account has been created! You are now able to log in...')
+            return redirect('login')
 
-    else:
-        u_form = UserForm()
-        p_form = UserProfileForm()
-
-    return render(request, 'users/register.html',
-                  {'u_form': u_form, 'p_form': p_form, 'title': 'Register'})
+        return render(request, 'users/register.html',
+                      {'b_form': b_form, 'p_form': p_form, 'type': type, 'title': 'Register'})
 
 
 @login_required
 def profile(request):
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if request.user.is_babysitter:
+            form = FormBabysitterProfile(request.POST, request.FILES, instance=request.user.modelbabysitter)
+        elif request.user.is_parent:
+            form = FormParentProfile(request.POST, request.FILES, instance=request.user.modelparent)
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
+        if form.is_valid():
+            form.save()
             messages.success(request, f'Your account has been updated !!')
             return redirect('profile')
 
-        else:
-            print(u_form.errors, p_form.errors)
-
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        if request.user.is_babysitter:
+            form = FormBabysitterProfile(instance=request.user.modelbabysitter)
+        elif request.user.is_parent:
+            form = FormParentProfile(instance=request.user.modelparent)
 
     return render(request, 'users/profile.html',
-                  {'u_form': u_form, 'p_form': p_form, 'title': 'Profile'})
+                  {'form': form, 'title': 'Profile'})

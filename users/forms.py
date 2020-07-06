@@ -1,36 +1,47 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import ModelBabysitter, ModelParent
 
 
-class UserForm(UserCreationForm):
+class FormBabysitter(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
 
     class Meta:
-        model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        model = ModelBabysitter
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2',
+                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_to_hourly', 'image']
 
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
-
-
-class UserUpdateForm(forms.ModelForm):
+class FormBabysitterProfile(forms.ModelForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
 
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email']
+        model = ModelBabysitter
+        fields = ['first_name', 'last_name', 'email',
+                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_to_hourly', 'image']
 
 
-class ProfileUpdateForm(forms.ModelForm):
+class FormParent(UserCreationForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+
     class Meta:
-        model = Profile
-        fields = ['gender', 'age', 'id_number', 'phone_number', 'image']
+        model = ModelParent
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2',
+                  'gender', 'age', 'id_number', 'phone_number', 'num_of_kids', 'image']
+
+
+class FormParentProfile(forms.ModelForm):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+
+    class Meta:
+        model = ModelParent
+        fields = ['first_name', 'last_name', 'email',
+                  'gender', 'age', 'id_number', 'phone_number', 'num_of_kids', 'image']

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def welcome(request):
@@ -6,7 +6,13 @@ def welcome(request):
 
 
 def home(request):
-    return render(request, 'babySitter/home.html', {'title': 'Home Page'})
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            return redirect('/admin/')
+        if request.user.is_babysitter:
+            return redirect('babySitter-orders')
+        elif request.user.is_parent:
+            return render(request, 'babySitter/home.html', {'title': 'Home Page'})
 
 
 def about(request):

@@ -6,13 +6,17 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Register</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
+                {% if type == 1 %}
+                    {{ b_form|crispy }}
+                {% elif type == 2 %}
+                    {{ p_form|crispy}}
+                {% endif %}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Sign Up</button>
             </div>
         </form>
+
         <div class="border-top pt-3">
             <small class="text-muted">
                 Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In Here</a>
