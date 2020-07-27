@@ -45,7 +45,7 @@
               {% elif user.is_authenticated and not user.is_superuser %}
                 <a class="nav-item nav-link" style="color: black" class="account-heading">Hello, {{ user.username }}</a>
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'babySitter-orders' %}">Available Orders</a>
+                <a class="nav-item nav-link" href="{% url 'babySitter-orders' %}">Manage Orders</a>
                 <a class="nav-item nav-link" href="{% url 'babySitter-history' %}">History</a>
                 <a class="nav-item nav-link" style="color: blanchedalmond" href="{% url 'logout' %}">Logout</a>
               {% else %}

@@ -1,4 +1,4 @@
 from django.contrib import admin
+from babySitter.models import Order
 
-
-# Register your models here.
+admin.site.register(Order)
