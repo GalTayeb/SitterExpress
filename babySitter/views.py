@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 
+from babySitter.models import Order
+
 
 def welcome(request):
     return render(request, 'babySitter/welcome.html', {'title': 'Welcome'})
@@ -12,24 +14,25 @@ def home(request):
         if request.user.is_babysitter:
             return redirect('babySitter-orders')
         elif request.user.is_parent:
-            return render(request, 'babySitter/home.html', {'title': 'Home Page'})
+            return render(request, 'babySitter/home.html')
 
 
 def about(request):
-    return render(request, 'babySitter/about.html', {'title': 'About Us'})
+    return render(request, 'babySitter/about.html')
 
 
 def orders(request):
-    return render(request, 'babySitter/orders.html', {'title': 'Orders'})
+    val = Order.objects.all()
+    return render(request, 'babySitter/orders.html', {"val": val})
 
 
-def history(request):
-    return render(request, 'babySitter/history.html', {'title': 'History'})
+def manage(request):
+    return render(request, 'babySitter/manage.html')
 
 
 def details(request):
-    return render(request, 'babySitter/details.html', {'title': 'Info'})
+    return render(request, 'babySitter/details.html')
 
 
 def choice(request):
-    return render(request, 'babySitter/choice.html', {'title': 'Register type'})
+    return render(request, 'babySitter/choice.html')

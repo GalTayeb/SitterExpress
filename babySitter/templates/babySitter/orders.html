@@ -1,7 +1,7 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
     <div class = "main">
-        <h1>Manage Orders</h1>
+        <h1>My Orders</h1>
         <br/>
         <html>
         <head>
@@ -29,128 +29,14 @@
                 <th>Contact</th>
                 <th>Status</th>
             </tr>
+            {% for info in val %}
             <tr>
-                <td>01/04/2020</td>
-                <td>Noa Berkovich</td>
-                <td class="popup" onclick="Confirm()" style="color: #009900">Confirm
-                    <span class="confirmPopupText" id="confirmPopup">Order Confirmed!</span>
-                </td>
-                <td class="popup" onclick="Cancel()" style="color: #CC0000">Cancel
-                    <span class="cancelPopupText" id="cancelPopup">Order Canceled!</span>
-                </td>
+                <td>{{ info.date }}</td>
+                <td>{{ info.contact }}</td>
+                <td>{{ info.status }}</td>
             </tr>
-            <tr>
-                <td>02/05/2020</td>
-                <td>Avia Cohen</td>
-                <td class="popup" onclick="Confirm()" style="color: #009900">Confirm
-                    <span class="confirmPopupText" id="confirmPopup">Order Confirmed!</span>
-                </td>
-                <td class="popup" onclick="Cancel()" style="color: #CC0000">Cancel
-                    <span class="cancelPopupText" id="cancelPopup">Order Canceled!</span>
-                </td>
-            </tr>
-            <tr>
-                <td>03/06/2020</td>
-                <td>Shir Levi</td>
-                <td class="popup" onclick="Confirm()" style="color: #009900">Confirm
-                    <span class="confirmPopupText" id="confirmPopup">Order Confirmed!</span>
-                </td>
-                <td class="popup" onclick="Cancel()" style="color: #CC0000">Cancel
-                    <span class="cancelPopupText" id="cancelPopup">Order Canceled!</span>
-                </td>
-            </tr>
+            {% endfor %}
         </table>
-        <script>
-            function Confirm() {
-            // When the user clicked, open the popup
-                var popup = document.getElementById("confirmPopup");
-                popup.classList.toggle("show");
-            }
-            function Cancel() {
-            // When the user clicked, open the popup
-                var popup = document.getElementById("cancelPopup");
-                popup.classList.toggle("show");
-            }
-        </script>
-        <style>
-            .popup {
-                position: relative;
-                display: inline-block;
-                cursor: pointer;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            /* The actual popup */
-            .popup .confirmPopupText {
-                visibility: hidden;
-                width: 160px;
-                background-color: #4CAF50;
-                color: #fff;
-                text-align: center;
-                border-radius: 6px;
-                padding: 8px 0;
-                position: absolute;
-                z-index: 1;
-                bottom: 125%;
-                left: 50%;
-                margin-left: -80px;
-            }
-            /* The actual popup */
-            .popup .cancelPopupText {
-                visibility: hidden;
-                width: 160px;
-                background-color: #FF0000;
-                color: #fff;
-                text-align: center;
-                border-radius: 6px;
-                padding: 8px 0;
-                position: absolute;
-                z-index: 1;
-                bottom: 125%;
-                left: 50%;
-                margin-left: -80px;
-            }
-            /* Popup arrow */
-            .popup .confirmPopupText::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #555 transparent transparent transparent;
-            }
-            /* Popup arrow */
-            .popup .cancelPopupText::after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #555 transparent transparent transparent;
-            }
-            /* Toggle this class - hide and show the popup */
-            .popup .show {
-                visibility: visible;
-                -webkit-animation: fadeIn 1s;
-                animation: fadeIn 1s;
-            }
-            /* Add animation (fade in the popup) */
-            @-webkit-keyframes fadeIn {
-                from {opacity: 0;}
-                to {opacity: 1;}
-            }
-
-            @keyframes fadeIn {
-                from {opacity: 0;}
-                to {opacity:1 ;}
-            }
-        </style>
         </body>
         </html>
     </div>
