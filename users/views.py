@@ -11,7 +11,7 @@ class register(View):
         p_form = FormParent()
 
         return render(request, 'users/register.html',
-                      {'b_form': b_form, 'p_form': p_form, 'type': type, 'title': 'Register'})
+                      {'b_form': b_form, 'p_form': p_form, 'type': type})
 
     def post(self, request, type):
         b_form = FormBabysitter(request.POST)
@@ -32,7 +32,7 @@ class register(View):
             return redirect('login')
 
         return render(request, 'users/register.html',
-                      {'b_form': b_form, 'p_form': p_form, 'type': type, 'title': 'Register'})
+                      {'b_form': b_form, 'p_form': p_form, 'type': type})
 
 
 @login_required
@@ -55,4 +55,4 @@ def profile(request):
             form = FormParentProfile(instance=request.user.modelparent)
 
     return render(request, 'users/profile.html',
-                  {'form': form, 'title': 'Profile'})
+                  {'form': form})

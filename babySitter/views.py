@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-
 from babySitter.models import Order
 
 
 def welcome(request):
-    return render(request, 'babySitter/welcome.html', {'title': 'Welcome'})
+    return render(request, 'babySitter/welcome.html')
 
 
 def home(request):
