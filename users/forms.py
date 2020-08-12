@@ -11,7 +11,7 @@ class FormBabysitter(UserCreationForm):
     class Meta:
         model = ModelBabysitter
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2',
-                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_to_hourly', 'image']
+                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_per_hour', 'image']
 
 
 class FormBabysitterProfile(forms.ModelForm):
@@ -22,7 +22,7 @@ class FormBabysitterProfile(forms.ModelForm):
     class Meta:
         model = ModelBabysitter
         fields = ['first_name', 'last_name', 'email',
-                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_to_hourly', 'image']
+                  'gender', 'age', 'id_number', 'phone_number', 'max_kids', 'salary_per_hour', 'image']
 
 
 class FormParent(UserCreationForm):

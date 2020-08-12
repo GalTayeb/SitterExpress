@@ -18,8 +18,8 @@ class ModelBabysitter(ModelUser):
     age = models.CharField(default='', max_length=3)
     id_number = models.CharField(default='', max_length=9)
     phone_number = models.CharField(default='', max_length=10)
-    max_kids = models.CharField(default='', max_length=2)
-    salary_to_hourly = models.CharField(default='', max_length=3)
+    max_kids = models.CharField(default='', max_length=1)
+    salary_per_hour = models.CharField(default='', max_length=3)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     one_to_five_choices = zip(range(1, 5 + 1), range(1, 5 + 1))
