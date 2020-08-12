@@ -9,6 +9,7 @@ class ModelUser(AbstractUser):
 
 class ModelBabysitter(ModelUser):
     user = models.OneToOneField(ModelUser, on_delete=models.CASCADE, primary_key=True)
+    available = models.BooleanField(default=True)
     GENDER_CHOICES = (
         ('', '---'),
         ('M', 'Male'),
