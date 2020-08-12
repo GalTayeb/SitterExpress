@@ -1,18 +1,85 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .checked {
+    color: orange;
+    }
+    </style>
+    </head>
+    <body>
     <div class = "main">
-        <h2>Here what I found for you...</h2>
+        <a href="{% url 'babySitter-home' %}" class="btn btn-outline-info">Back to find another BabySitter</a>
         <br/><br/>
-        <h5>First name: Shir</h5>
-        <h5>Last name: Levi</h5>
-        <h5>Email address: shirlevi@gmail.com</h5>
-        <h5>Gender: Female</h5>
-        <h5>Age: 25</h5>
-        <h5>Id number: 123456789</h5>
-        <h5>Phone number: 0501234567</h5>
-        <br/><br/>
-        <a class="btn btn-outline-info">Order Now</a>
-        <a class="btn btn-outline-info">Cancel</a>
-        <br/><br/>
+        {% for info in users %}
+            {% if info.available %}
+                <img class="rounded-circle account-img" src="/media/{{ info.image }}">
+                <h5>First Name: {{ info.first_name }}</h5>
+                <h5>Last Name: {{ info.last_name }}</h5>
+                <h5>Email Address: {{ info.email }}</h5>
+                <h5>Gender: {{ info.gender }}</h5>
+                <h5>Age: {{ info.age }}</h5>
+                <h5>ID Number: {{ info.id_number }}</h5>
+                <h5>Phone Number: {{ info.phone_number }}</h5>
+                {% if info.rating == 0 %}
+                <h5>Rating:
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 1 %}
+                <h5>Rating:
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 2 %}
+                <h5>Rating:
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 3 %}
+                <h5>Rating:
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 4 %}
+                <h5>Rating:
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 5 %}
+                <h5>Rating:
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                </h5>
+                {% endif %}
+                <br/>
+                <a class="btn btn-outline-info">Order this BabySitter</a>
+                <br/><br/><br/>
+            {% endif %}
+            {% endfor %}
     </div>
+    </body>
+</html>
 {% endblock content %}
