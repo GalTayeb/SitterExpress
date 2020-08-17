@@ -3,7 +3,6 @@ from babySitter.models import Order
 from users.models import ModelBabysitter
 import json
 from django.http import HttpResponse
-from django.contrib.gis.geoip2 import GeoIP2
 
 
 def welcome(request):
