@@ -6,7 +6,7 @@ click==7.1.2
 colorama==0.4.3
 contextlib2==0.6.0.post1
 distlib==0.3.1
-Django==2.0.1
+Django==2.2.13
 django-crispy-forms==1.9.2
 django-google-maps==0.12.1
 django-leaflet==0.27.1
