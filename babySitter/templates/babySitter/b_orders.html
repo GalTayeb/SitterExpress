@@ -26,14 +26,16 @@
         <table>
             <tr>
                 <th>Date</th>
-                <th>Contact</th>
-                <th>Status</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Rating</th>
             </tr>
             {% for info in orders %}
             <tr>
                 <td>{{ info.date }}</td>
-                <td>{{ info.contact }}</td>
-                <td>{{ info.status }}</td>
+                <td>{{ info.name }}</td>
+                <td>{{ info.phone_number }}</td>
+                <td>{{ info.rating }}</td>
             </tr>
             {% endfor %}
         </table>

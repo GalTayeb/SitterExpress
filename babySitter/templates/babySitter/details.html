@@ -15,6 +15,8 @@
     <div class = "main">
         <a href="{% url 'babySitter-home' %}" class="btn btn-outline-info">Back to find another BabySitter</a>
         <br/><br/>
+        <form method="POST" action="/thanks">
+        {% csrf_token %}
         {% for info in users %}
             {% if info.available %}
                 <img class="rounded-circle account-img" src="/media/{{ info.image }}">
@@ -77,10 +79,11 @@
                 </h5>
                 {% endif %}
                 <br/>
-                <a class="btn btn-outline-info">Order this BabySitter</a>
+                <button type="submit" class="btn btn-primary">Order this BabySitter</button>
                 <br/><br/><br/>
             {% endif %}
             {% endfor %}
+        </form>
     </div>
     </body>
 </html>

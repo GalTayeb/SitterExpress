@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from babySitter.models import Order
+from babySitter.models import Orders
 from users.models import ModelBabysitter
 import json
 from django.http import HttpResponse
@@ -22,7 +22,8 @@ def home(request):
                 results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids)).filter(rating__gte=float(rating))
                 return render(request, 'babySitter/details.html', {"users": results})
             return render(request, 'babySitter/home.html')
-#
+
+
 # def babysitterdetails(request):
 #     # orders = order.objects.filter(user = user)
 #     return render(request, 'page',{"orders":orders})
@@ -32,13 +33,14 @@ def about(request):
     return render(request, 'babySitter/about.html')
 
 
-def order(request):
-    orders = Order.objects.all()
-    return render(request, 'babySitter/order.html', {"orders": orders})
+def p_orders(request):
+    orders = Orders.objects.all()
+    return render(request, 'babySitter/p_orders.html', {"orders": orders})
 
 
-def manage(request):
-    return render(request, 'babySitter/manage.html')
+def b_orders(request):
+    orders = Orders.objects.all()
+    return render(request, 'babySitter/b_orders.html', {"orders": orders})
 
 
 def details(request):
@@ -49,6 +51,11 @@ def details(request):
 def choice(request):
     return render(request, 'babySitter/choice.html')
 
+
+def thanks(request):
+    if request.method == 'POST':
+        return render(request, 'babySitter/thanks.html')
+    return render(request, 'babySitter/thanks.html')
 
 # def is_online(request):
 #     isonline = request.GET.get('isonline')
