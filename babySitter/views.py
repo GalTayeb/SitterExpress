@@ -1,7 +1,7 @@
 from babySitter.models import BabysitterOrders, ParentOrders
 from datetime import datetime
 from django.shortcuts import render, redirect
-from users.models import ModelBabysitter, ModelUser
+from users.models import ModelUser, ModelBabysitter, ModelParent
 
 import json
 from django.http import HttpResponse
@@ -35,16 +35,24 @@ def home(request):
 
 def details(request):
     if request.method == 'POST':
-        orders = ParentOrders()
+        p_orders = ParentOrders()
         sitterName = request.POST.get('test')
         sitter = ModelUser.objects.filter(username=sitterName).first()
         babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
+        p_orders.date = datetime.now()
+        p_orders.name = sitter.username
+        p_orders.phone_number = babysitter.phone_number
+        p_orders.rating = babysitter.rating
+        p_orders.save()
 
-        orders.date = datetime.now()
-        orders.name = sitter.username
-        orders.phone_number = babysitter.phone_number
-        orders.rating = babysitter.rating
-        orders.save()
+        # b_orders = BabysitterOrders()
+        # parentName = request.POST.get('test')
+        # parent = ModelUser.objects.filter(username=parentName).first()
+        # fullparent = ModelParent.objects.filter(user=parent.id).first()
+        # b_orders.date = datetime.now()
+        # b_orders.name = sitter.username
+        # b_orders.phone_number = fullparent.phone_number
+        # b_orders.save()
         return render(request, 'babySitter/thanks.html')
 
     users = ModelBabysitter.objects.all()

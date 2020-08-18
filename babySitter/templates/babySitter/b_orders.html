@@ -12,6 +12,7 @@
                     background-size: 1500px;
                 }
                 table {
+                    text-align: center;
                     border-collapse: collapse;
                     border-spacing: 0;
                     width: 100%;
@@ -38,14 +39,12 @@
                 <th>Date</th>
                 <th>Name</th>
                 <th>Phone Number</th>
-                <th>Rating</th>
             </tr>
             {% for info in data %}
             <tr>
                 <td>{{ info.date }}</td>
                 <td>{{ info.name }}</td>
                 <td>{{ info.phone_number }}</td>
-                <td>{{ info.rating }}</td>
             </tr>
             {% endfor %}
         </table>
