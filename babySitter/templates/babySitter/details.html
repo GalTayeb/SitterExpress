@@ -15,10 +15,10 @@
     <div class = "main">
         <a href="{% url 'babySitter-home' %}" class="btn btn-outline-info">Back to find another BabySitter</a>
         <br/><br/>
-        <form method="POST" action="/thanks">
-        {% csrf_token %}
         {% for info in users %}
             {% if info.available %}
+                <form method="POST" action=".">
+                {% csrf_token %}
                 <img class="rounded-circle account-img" src="/media/{{ info.image }}">
                 <h5>First Name: {{ info.first_name }}</h5>
                 <h5>Last Name: {{ info.last_name }}</h5>

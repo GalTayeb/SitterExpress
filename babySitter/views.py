@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from babySitter.models import Orders
+from babySitter.models import BabysitterOrders, ParentOrders
 from users.models import ModelBabysitter
 import json
 from django.http import HttpResponse
@@ -7,6 +7,14 @@ from django.http import HttpResponse
 
 def welcome(request):
     return render(request, 'babySitter/welcome.html')
+
+
+def about(request):
+    return render(request, 'babySitter/about.html')
+
+
+def choice(request):
+    return render(request, 'babySitter/choice.html')
 
 
 def home(request):
@@ -24,46 +32,23 @@ def home(request):
             return render(request, 'babySitter/home.html')
 
 
-# def babysitterdetails(request):
-#     # orders = order.objects.filter(user = user)
-#     return render(request, 'page',{"orders":orders})
-
-
-def about(request):
-    return render(request, 'babySitter/about.html')
-
-
-def p_orders(request):
-    orders = Orders.objects.all()
-    return render(request, 'babySitter/p_orders.html', {"orders": orders})
-
-
-def b_orders(request):
-    orders = Orders.objects.all()
-    return render(request, 'babySitter/b_orders.html', {"orders": orders})
-
-
 def details(request):
     users = ModelBabysitter.objects.all()
     return render(request, 'babySitter/details.html', {"users": users})
 
 
-def choice(request):
-    return render(request, 'babySitter/choice.html')
+def b_orders(request):
+    orders = BabysitterOrders.objects.all()
+    return render(request, 'babySitter/b_orders.html', {"orders": orders})
+
+
+def p_orders(request):
+    orders = ParentOrders.objects.all()
+    return render(request, 'babySitter/p_orders.html', {"orders": orders})
 
 
 def thanks(request):
-    if request.method == 'POST':
-        return render(request, 'babySitter/thanks.html')
     return render(request, 'babySitter/thanks.html')
-
-# def is_online(request):
-#     isonline = request.GET.get('isonline')
-#     isready = request.GET.get('isready')
-#     userid = request.GET.get('userid')
-#
-#     res = {"userid": userid}
-#     return HttpResponse(json.dumps(res))
 
 
 # def get_locations(request):
@@ -80,7 +65,6 @@ def thanks(request):
 #     return HttpResponse(json.dumps(res))
 
 
-# def search(request):
-#     kids
-#     rating
-#     price
+# def babysitterdetails(request):
+#     # orders = order.objects.filter(user = user)
+#     return render(request, 'page',{"orders":orders})

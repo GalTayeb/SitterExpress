@@ -1,15 +1,27 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
     <div class = "main">
-        <h1>Register type</h1>
-        <h3>What are you looking for ?</h3>
-        <br/><br/>
+      <head>
+        <style>
+        body {
+            background-image: url('/media/Background.jpg');
+            margin-left: 750px;
+        }
+        </style>
+        <style>
+        p {text-align: center;}
+        div {text-align: center;}
+        </style>
+      </head>
+    <body>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="form-group">
-                <a href="{% url 'register' 1%}" class="btn btn-outline-info">I'm a babysitter</a>
+                <a href="{% url 'register' 2%}" class="btn btn-outline-info">I'm a parent</a>
             </div>
         <br/>
             <div class="form-group">
-                <a href="{% url 'register' 2%}" class="btn btn-outline-info">I'm a parent... I'm looking for a babysitter</a>
+                <a href="{% url 'register' 1%}" class="btn btn-outline-info">I'm a babysitter</a>
             </div>
+    </body>
     </div>
 {% endblock content %}

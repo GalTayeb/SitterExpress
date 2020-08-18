@@ -4,25 +4,23 @@
       <head>
         <style>
         body {
-            background-image: url('/media/slide-01.jpg');
-            margin-left: 500px;
-
+            background-image: url('/media/Background.jpg');
+            margin-left: 750px;
         }
         </style>
-          <style>
-h1 {text-align: center; color: white; font-size: 400%;}
-h3 {text-align: center; color: white; font-size: 250%;}
-p {text-align: center;}
-div {text-align: center;}
-</style>
+        <style>
+        p {text-align: center;}
+        div {text-align: center;}
+        </style>
       </head>
     <body>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="form-group" >
-                <a href="{% url 'login' %}" class="btn btn-outline-info" >I have an account</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-info" style="border-color: white">I have an account</a>
             </div>
         <br/>
             <div class="form-group">
-                <a href="{% url 'babySitter-choice' %}" class="btn btn-outline-info">I don't have an account</a>
+                <a href="{% url 'babySitter-choice' %}" class="btn btn-outline-info" style="border-color: white">I don't have an account</a>
             </div>
     </body>
     </div>

@@ -24,7 +24,7 @@ class ModelBabysitter(ModelUser):
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     one_to_five_choices = zip(range(1, 5 + 1), range(1, 5 + 1))
-    rating = models.PositiveSmallIntegerField(default=0, choices=one_to_five_choices)
+    rating = models.PositiveSmallIntegerField(default=5, choices=one_to_five_choices)
 
     class Meta:
         verbose_name_plural = "BabysitterUsers"

@@ -1,12 +1,31 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
-    <h1>Our Team</h1>
+    <div class = "main">
+      <head>
+        <style>
+        body {
+            background-image: url('/media/Background.jpg');
+            margin-left: 750px;
+        }
+        </style>
+        <style>
+        h3 {text-align: center; color: Red; font-size: 200%;}
+        h5 {text-align: center; color: white; font-size: 100%;}
+        p {text-align: center;}
+        div {text-align: center;}
+        </style>
+      </head>
+    <body>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <h3>Our Team:</h3>
     <h5>Gal Tayeb</h5>
     <h5>Omri Kimchy</h5>
     <h5>Shachar Yosebashvili</h5>
     <h5>Chen Niego</h5>
     <h5>Liad Telner</h5>
     <br><br><br>
-    <h1>Supervisor</h1>
+    <h3>Supervisor:</h3>
     <h5>Aviv Shukrun</h5>
+    </body>
+    </div>
 {% endblock content %}
