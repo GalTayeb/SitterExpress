@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from babySitter.forms import FormBabysitterOrders
 from babySitter.models import BabysitterOrders, ParentOrders
+from datetime import timezone
+from django.shortcuts import render, redirect
 from users.models import ModelBabysitter
 import json
 from django.http import HttpResponse
@@ -26,15 +28,26 @@ def home(request):
                 price = request.POST.get('price') #salary_per_hour
                 kids = request.POST.get('kids') #max_kids
                 rating = request.POST.get('rating') #rating
-                radius = request.POST.get('radius')
                 results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids)).filter(rating__gte=float(rating))
                 return render(request, 'babySitter/details.html', {"users": results})
             return render(request, 'babySitter/home.html')
 
 
 def details(request):
+    if request.method == 'POST':
+        form = FormBabysitterOrders()
+        if form.is_valid():
+            orders = FormBabysitterOrders()
+            orders.date = timezone.now()
+            orders.name = request.POST.get('name')
+            orders.phone_number = request.POST.get('phone_number')
+            orders.rating = request.POST.get('rating')
+            orders.save()
+            return redirect('babySitter-thanks')
+        else:
+            form = FormBabysitterOrders
     users = ModelBabysitter.objects.all()
-    return render(request, 'babySitter/details.html', {"users": users})
+    return render(request, 'babySitter/details.html', {"users": users, "form": form})
 
 
 def b_orders(request):
@@ -49,6 +62,8 @@ def p_orders(request):
 
 def thanks(request):
     return render(request, 'babySitter/thanks.html')
+
+
 
 
 # def get_locations(request):

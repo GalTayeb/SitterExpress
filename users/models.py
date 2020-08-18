@@ -22,12 +22,9 @@ class ModelBabysitter(ModelUser):
     max_kids = models.CharField(default='', max_length=1)
     salary_per_hour = models.CharField(default='', max_length=3)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-
+    radius = models.FloatField(default=0)
     one_to_five_choices = zip(range(1, 5 + 1), range(1, 5 + 1))
     rating = models.PositiveSmallIntegerField(default=5, choices=one_to_five_choices)
-
-    class Meta:
-        verbose_name_plural = "BabysitterUsers"
 
 
 class ModelParent(ModelUser):
@@ -43,6 +40,3 @@ class ModelParent(ModelUser):
     phone_number = models.CharField(default='', max_length=10)
     num_of_kids = models.CharField(default='', max_length=2)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-
-    class Meta:
-        verbose_name_plural = "ParentUsers"

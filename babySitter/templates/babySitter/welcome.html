@@ -4,8 +4,9 @@
       <head>
         <style>
         body {
-            background-image: url('/media/Background.jpg');
+            background-image: url('/media/Logo.jpg');
             margin-left: 750px;
+            background-size: 1400px;
         }
         </style>
         <style>
@@ -15,13 +16,15 @@
       </head>
     <body>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <div class="form-group" >
-                <a href="{% url 'login' %}" class="btn btn-outline-info" style="border-color: white">I have an account</a>
-            </div>
-        <br/>
-            <div class="form-group">
-                <a href="{% url 'babySitter-choice' %}" class="btn btn-outline-info" style="border-color: white">I don't have an account</a>
-            </div>
+{#         #}
+{#            <div class="form-group" >#}
+{#                <a href="{% url 'login' %}" class="btn btn-outline-info" style="border-color: black">I have an account</a>#}
+{#            </div>#}
+{#        <br/>#}
+{#            <div class="form-group">#}
+{#                <a href="{% url 'babySitter-choice' %}" class="btn btn-outline-info" style="border-color: black">I don't have an account</a>#}
+{#            </div>#}
+{#    #}
     </body>
     </div>
 {% endblock content %}

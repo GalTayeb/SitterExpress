@@ -5,15 +5,19 @@
     <head>
     <!-- Font Awesome Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-    .checked {
-    color: orange;
-    }
-    </style>
+        <style>
+        body{
+            background-image: url('/media/Background.jpeg');
+        }
+        .checked {
+        color: orange;
+        }
+        </style>
+
     </head>
     <body>
     <div class = "main">
-        <a href="{% url 'babySitter-home' %}" class="btn btn-outline-info">Back to find another BabySitter</a>
+        <a href="{% url 'babySitter-home' %}" class="btn btn-outline-secondary">Back to find another BabySitter</a>
         <br/><br/>
         {% for info in users %}
             {% if info.available %}
@@ -79,7 +83,7 @@
                 </h5>
                 {% endif %}
                 <br/>
-                <button type="submit" class="btn btn-primary">Order this BabySitter</button>
+                <button type="submit" class="btn btn-dark">Order this BabySitter</button>
                 <br/><br/><br/>
             {% endif %}
             {% endfor %}

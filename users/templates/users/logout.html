@@ -1,9 +1,17 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
     <h2>You have been logged out...</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a href="{% url 'login' %}">Log In Again</a>
-        </small>
-    </div>
+
+        <style>
+        h2 {
+            margin-left: 100px;
+            color: Black
+        }
+        body {
+            background-image: url('/media/Logo.jpg');
+            margin-left: 500px;
+            background-size: 1400px;
+        }
+        </style>
+
 {% endblock content %}

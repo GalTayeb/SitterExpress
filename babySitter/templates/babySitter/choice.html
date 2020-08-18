@@ -4,23 +4,26 @@
       <head>
         <style>
         body {
-            background-image: url('/media/Background.jpg');
+            background-image: url('/media/Logo.jpg');
             margin-left: 750px;
+            background-size: 1400px;
         }
         </style>
         <style>
+        h1 {color: white}
         p {text-align: center;}
         div {text-align: center;}
         </style>
       </head>
     <body>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+{#    <h1>Find your perfect match</h1><br/><br/>#}
             <div class="form-group">
-                <a href="{% url 'register' 2%}" class="btn btn-outline-info">I'm a parent</a>
+                <a href="{% url 'register' 2%}" class="btn btn-outline-dark" style="color: white">I'M A PARENT</a>
             </div>
         <br/>
             <div class="form-group">
-                <a href="{% url 'register' 1%}" class="btn btn-outline-info">I'm a babysitter</a>
+                <a href="{% url 'register' 1%}" class="btn btn-outline-dark" style="color: white">I'M A BABYSITTER</a>
             </div>
     </body>
     </div>
