@@ -7,18 +7,28 @@
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
+                body{
+                    background-image: url('/media/Background2.jpeg');
+                    background-size: 1500px;
+                }
                 table {
                     border-collapse: collapse;
                     border-spacing: 0;
                     width: 100%;
-                    border: 1px solid #000000;
+                    border: 2px solid Black;
                 }
-                th, td {
-                    text-align: left;
-                    padding: 16px;
+                th {
+                    text-align: center;
+                    padding: 10px;
+                    color: Red;
+                }
+                td {
+                    text-align: center;
+                    padding: 10px;
+                    color: Black;
                 }
                 tr:nth-child(even) {
-                    background-color: #000000;
+                    border: 1px solid Black;
                 }
             </style>
         </head>
@@ -30,7 +40,7 @@
                 <th>Phone Number</th>
                 <th>Rating</th>
             </tr>
-            {% for info in orders %}
+            {% for info in data %}
             <tr>
                 <td>{{ info.date }}</td>
                 <td>{{ info.name }}</td>

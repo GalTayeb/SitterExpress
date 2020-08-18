@@ -1,25 +1,25 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html>
+    <div class = "main">
+    <html>
     <head>
     <!-- Font Awesome Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
         body{
             background-image: url('/media/Background.jpeg');
+            background-size: 1500px;
         }
         .checked {
         color: orange;
         }
         </style>
-
     </head>
     <body>
     <div class = "main">
         <a href="{% url 'babySitter-home' %}" class="btn btn-outline-secondary">Back to find another BabySitter</a>
-        <br/><br/>
-        {% for info in users %}
+        <br/><br/><br/>
+        {% for info in data %}
             {% if info.available %}
                 <form method="POST" action="/details/">
                 {% csrf_token %}
@@ -85,11 +85,12 @@
                 <br/>
                 <input type="hidden" min=0 class="form-control" value="{{ info.username }}" name="test">
                 <button type="submit" class="btn btn-dark">Order this BabySitter</button>
-                <br/><br/><br/>
+                <br/><br/><br/><br/><br/>
             {% endif %}
             {% endfor %}
         </form>
     </div>
     </body>
-</html>
+    </html>
+    </div>
 {% endblock content %}
