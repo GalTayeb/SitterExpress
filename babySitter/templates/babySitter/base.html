@@ -35,7 +35,7 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
-                <a class="nav-item nav-link" style="color: black" class="account-heading">Hello, {{ user.username }}</a>
+                <a class="nav-item nav-link" style="color: Red" class="account-heading">Hello, {{ user.username }}</a>
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                   {% if user.is_babysitter %}
                     <a class="nav-item nav-link" href="{% url 'babySitter-b_orders' %}">My Orders</a>
