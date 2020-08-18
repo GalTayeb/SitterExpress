@@ -13,3 +13,8 @@ class ParentOrders(models.Model):
     name = models.CharField(default='', max_length=20)
     phone_number = models.CharField(default='', max_length=10)
     rating = models.PositiveSmallIntegerField(default=0)
+
+
+# class SelfLocation(models.Model):
+#     lat = models.CharField(default='')
+#     lon = models.CharField(default='')

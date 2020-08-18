@@ -1,8 +1,9 @@
 from babySitter.forms import FormBabysitterOrders
 from babySitter.models import BabysitterOrders, ParentOrders
-from datetime import timezone
+from datetime import datetime
 from django.shortcuts import render, redirect
-from users.models import ModelBabysitter
+from users.models import ModelBabysitter, ModelUser
+
 import json
 from django.http import HttpResponse
 
@@ -35,19 +36,24 @@ def home(request):
 
 def details(request):
     if request.method == 'POST':
-        form = FormBabysitterOrders()
-        if form.is_valid():
-            orders = FormBabysitterOrders()
-            orders.date = timezone.now()
-            orders.name = request.POST.get('name')
-            orders.phone_number = request.POST.get('phone_number')
-            orders.rating = request.POST.get('rating')
+        #form = FormBabysitterOrders()
+        #if form.is_valid():
+        if True:
+            orders = BabysitterOrders()
+            sitterName = request.POST.get('test')
+            sitter =  ModelUser.objects.filter(username=sitterName).first()
+            babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
+
+            orders.date = datetime.now()
+            orders.name = sitter.username
+            orders.phone_number = babysitter.phone_number
+            orders.rating = babysitter.rating
             orders.save()
-            return redirect('babySitter-thanks')
-        else:
-            form = FormBabysitterOrders
+            return render(request,'babySitter/thanks.html')
+        #else:
+            #form = FormBabysitterOrders
     users = ModelBabysitter.objects.all()
-    return render(request, 'babySitter/details.html', {"users": users, "form": form})
+    return render(request, 'babySitter/details.html', {"users": users})
 
 
 def b_orders(request):
@@ -64,20 +70,16 @@ def thanks(request):
     return render(request, 'babySitter/thanks.html')
 
 
+def get_locations(request):
+    lat = request.GET.get('lat')
+    lon = request.GET.get('lon')
+    db_res = db_query(lat, lon, radius)
 
-
-# def get_locations(request):
-#     lat = request.GET.get('lat')
-#     lon = request.GET.get('lon')
-#     radius = request.GET.get('radius')
-#     db_res = db_query(lat, lon, radius)
-#
-#     res = {
-#         "lon": db_res.lon,
-#         "lat": db_res.lat,
-#         "id": db_res.id,
-#     }
-#     return HttpResponse(json.dumps(res))
+    res = {
+        "lon": db_res.lon,
+        "lat": db_res.lat,
+    }
+    return HttpResponse(json.dumps(res))
 
 
 # def babysitterdetails(request):

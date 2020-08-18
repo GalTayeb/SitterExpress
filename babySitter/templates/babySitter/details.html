@@ -21,7 +21,7 @@
         <br/><br/>
         {% for info in users %}
             {% if info.available %}
-                <form method="POST" action=".">
+                <form method="POST" action="/details/">
                 {% csrf_token %}
                 <img class="rounded-circle account-img" src="/media/{{ info.image }}">
                 <h5>First Name: {{ info.first_name }}</h5>
@@ -83,6 +83,7 @@
                 </h5>
                 {% endif %}
                 <br/>
+                <input type="hidden" min=0 class="form-control" value="{{ info.username }}" name="test">
                 <button type="submit" class="btn btn-dark">Order this BabySitter</button>
                 <br/><br/><br/>
             {% endif %}

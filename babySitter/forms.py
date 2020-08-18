@@ -12,3 +12,5 @@ class FormParentOrders(forms.ModelForm):
     class Meta:
         model = ParentOrders
         fields = ['date', 'name', 'phone_number', 'rating']
+
+
