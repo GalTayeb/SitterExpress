@@ -21,14 +21,14 @@ class register(View):
             b_user = b_form.save(commit=False)
             b_user.is_babysitter = True
             b_user.save()
-            messages.success(request, f'Your account has been created! You are now able to log in...')
+            messages.success(request, f'Your account has been created !!')
             return redirect('login')
 
         if p_form.is_valid():
             p_user = p_form.save(commit=False)
             p_user.is_parent = True
             p_user.save()
-            messages.success(request, f'Your account has been created! You are now able to log in...')
+            messages.success(request, f'Your account has been created !!')
             return redirect('login')
 
         return render(request, 'users/register.html',

@@ -22,7 +22,7 @@ def choice(request):
 def home(request):
     if request.user.is_authenticated:
         if request.user.is_babysitter:
-            return redirect('babySitter-about')
+            return redirect('babySitter-b_orders')
         elif request.user.is_parent:
             if request.method == 'POST':
                 price = request.POST.get('price') #salary_per_hour
@@ -40,7 +40,7 @@ def details(request):
         sitter = ModelUser.objects.filter(username=sitterName).first()
         babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
         p_orders.date = datetime.now()
-        p_orders.name = sitter.username
+        p_orders.name = sitter.first_name + " " + sitter.last_name
         p_orders.phone_number = babysitter.phone_number
         p_orders.rating = babysitter.rating
         p_orders.save()

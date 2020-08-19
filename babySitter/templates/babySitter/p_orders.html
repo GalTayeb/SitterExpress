@@ -5,11 +5,16 @@
         <br/>
         <html>
         <head>
+            <!-- Font Awesome Icon Library -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
                 body{
-                    background-image: url('/media/Background2.jpeg');
+                    background-image: url('/media/Pic2.jpeg');
                     background-size: 1500px;
+                }
+                .checked {
+                    color: orange;
                 }
                 table {
                     text-align: center;
@@ -37,7 +42,7 @@
         <table>
             <tr>
                 <th>Date</th>
-                <th>Name</th>
+                <th>Full Name</th>
                 <th>Phone Number</th>
                 <th>Rating</th>
             </tr>
@@ -46,7 +51,50 @@
                 <td>{{ info.date }}</td>
                 <td>{{ info.name }}</td>
                 <td>{{ info.phone_number }}</td>
-                <td>{{ info.rating }}</td>
+                <td>                {% if info.rating == 0 %}
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 1 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 2 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 3 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 4 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                </h5>
+                {% elif info.rating == 5 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                </h5>
+                {% endif %}
+</td>
             </tr>
             {% endfor %}
         </table>

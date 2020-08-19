@@ -6,13 +6,13 @@
     <!-- Font Awesome Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
-        body{
-            background-image: url('/media/Background.jpeg');
-            background-size: 1500px;
-        }
-        .checked {
-        color: orange;
-        }
+            body{
+                background-image: url('/media/Pic1.jpeg');
+                background-size: 1500px;
+            }
+            .checked {
+                color: orange;
+            }
         </style>
     </head>
     <body>
@@ -83,8 +83,7 @@
                 </h5>
                 {% endif %}
                 <br/>
-                <input type="hidden" min=0 class="form-control" value="{{ info.username }}" name="test">
-                <button type="submit" class="btn btn-dark">Order this BabySitter</button>
+                <button type="submit" class="btn btn-dark" value="{{ info.username }}" name="test">Order this BabySitter</button>
                 <br/><br/><br/><br/><br/>
             {% endif %}
             {% endfor %}
