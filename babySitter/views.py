@@ -7,10 +7,6 @@ import json
 from django.http import HttpResponse
 
 
-def welcome(request):
-    return render(request, 'babySitter/welcome.html')
-
-
 def about(request):
     return render(request, 'babySitter/about.html')
 
@@ -35,37 +31,43 @@ def home(request):
 
 def details(request):
     if request.method == 'POST':
-        p_orders = ParentOrders()
-        sitterName = request.POST.get('test')
-        sitter = ModelUser.objects.filter(username=sitterName).first()
-        babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
-        p_orders.date = datetime.now()
-        p_orders.name = sitter.first_name + " " + sitter.last_name
-        p_orders.phone_number = babysitter.phone_number
-        p_orders.rating = babysitter.rating
-        p_orders.save()
+            p_orders = ParentOrders()
+            sitterName = request.POST.get('test')
+            sitter = ModelUser.objects.filter(username=sitterName).first()
+            babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
 
-        # b_orders = BabysitterOrders()
-        # parentName = request.POST.get('test')
-        # parent = ModelUser.objects.filter(username=parentName).first()
-        # fullparent = ModelParent.objects.filter(user=parent.id).first()
-        # b_orders.date = datetime.now()
-        # b_orders.name = sitter.username
-        # b_orders.phone_number = fullparent.phone_number
-        # b_orders.save()
-        return render(request, 'babySitter/thanks.html')
+            b_orders = BabysitterOrders()
+            parentName = request.user.username
+            parent = ModelUser.objects.filter(username=parentName).first()
+            fullparent = ModelParent.objects.filter(user=parent.id).first()
+
+            p_orders.date = datetime.now()
+            p_orders.b_name = sitter.first_name + " " + sitter.last_name
+            p_orders.p_name = parent.username
+            p_orders.phone_number = babysitter.phone_number
+            p_orders.rating = babysitter.rating
+            p_orders.save()
+
+            b_orders.date = datetime.now()
+            b_orders.p_name = parent.first_name + " " + parent.last_name
+            b_orders.b_name = sitter.username
+            b_orders.phone_number = fullparent.phone_number
+            b_orders.save()
+            return render(request, 'babySitter/thanks.html')
 
     users = ModelBabysitter.objects.all()
     return render(request, 'babySitter/details.html', {"data": users})
 
 
 def b_orders(request):
-    b_orders = BabysitterOrders.objects.all()
+    sitterName = request.user.username
+    b_orders = BabysitterOrders.objects.filter(b_name=sitterName).all()
     return render(request, 'babySitter/b_orders.html', {"data": b_orders})
 
 
 def p_orders(request):
-    p_orders = ParentOrders.objects.all()
+    parentName = request.user.username
+    p_orders = ParentOrders.objects.filter(p_name=parentName).all()
     return render(request, 'babySitter/p_orders.html', {"data": p_orders})
 
 
