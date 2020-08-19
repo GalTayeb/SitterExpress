@@ -73,15 +73,3 @@ def p_orders(request):
 
 def thanks(request):
     return render(request, 'babySitter/thanks.html')
-
-
-# def get_locations(request):
-#     lat = request.GET.get('lat')
-#     lon = request.GET.get('lon')
-#     db_res = db_query(lat, lon, radius)
-#
-#     res = {
-#         "lon": db_res.lon,
-#         "lat": db_res.lat,
-#     }
-#     return HttpResponse(json.dumps(res))

@@ -1,8 +1,10 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
 from .forms import FormParent, FormBabysitter, FormBabysitterProfile, FormParentProfile
+from .models import ModelParent
 
 
 class register(View):
@@ -56,3 +58,14 @@ def profile(request):
 
     return render(request, 'users/profile.html',
                   {'form': form})
+
+
+def save_user_geolocation(request):
+    if request.method == 'POST':
+        latitude = request.POST['lat']
+        longitude = request.POST['lng']
+        ModelParent.create(
+            user=request.user,
+            lat=latitude,
+            lng=longitude)
+        return HttpResponse('')

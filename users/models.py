@@ -25,6 +25,8 @@ class ModelBabysitter(ModelUser):
     radius = models.FloatField(default=0)
     one_to_five_choices = zip(range(1, 5 + 1), range(1, 5 + 1))
     rating = models.PositiveSmallIntegerField(default=5, choices=one_to_five_choices)
+    lat = models.FloatField(blank=False, null=False)
+    lng = models.FloatField(blank=False, null=False)
 
 
 class ModelParent(ModelUser):
@@ -40,3 +42,5 @@ class ModelParent(ModelUser):
     phone_number = models.CharField(default='', max_length=10)
     num_of_kids = models.CharField(default='', max_length=2)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    lat = models.FloatField(blank=False, null=False)
+    lng = models.FloatField(blank=False, null=False)
