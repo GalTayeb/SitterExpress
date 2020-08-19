@@ -51,7 +51,7 @@
                 <td>{{ info.date }}</td>
                 <td>{{ info.b_name }}</td>
                 <td>{{ info.phone_number }}</td>
-                <td>                {% if info.rating == 0 %}
+                <td>{% if info.rating == 0 %}
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span>
@@ -93,8 +93,7 @@
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 </h5>
-                {% endif %}
-</td>
+                {% endif %}</td>
             </tr>
             {% endfor %}
         </table>

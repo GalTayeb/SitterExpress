@@ -49,6 +49,13 @@
             {% endfor %}
         </table>
         </body>
+        <script>
+            {% if user.is_babysitter %}
+                navigator.geolocation.getCurrentPosition(geo=>{
+                    fetch(`/b_save_location?lat=${geo.coords.latitude}&lng=${geo.coords.longitude}`)
+                });
+            {% endif %}
+        </script>
         </html>
     </div>
 {% endblock content %}

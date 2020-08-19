@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from .forms import FormParent, FormBabysitter, FormBabysitterProfile, FormParentProfile
-from .models import ModelParent
+from .forms import FormBabysitter, FormParent, FormBabysitterProfile, FormParentProfile
+from .models import ModelUser, ModelBabysitter, ModelParent
 
 
 class register(View):
@@ -60,12 +60,21 @@ def profile(request):
                   {'form': form})
 
 
-def save_user_geolocation(request):
-    if request.method == 'POST':
-        latitude = request.POST['lat']
-        longitude = request.POST['lng']
-        ModelParent.create(
-            user=request.user,
-            lat=latitude,
-            lng=longitude)
-        return HttpResponse('')
+def b_save_location(request):
+    sitterName = request.user.username
+    sitter = ModelUser.objects.filter(username=sitterName).first()
+    babysitter = ModelBabysitter.objects.filter(user=sitter.id).first()
+    babysitter.lat = request.GET.get('lat')
+    babysitter.lng = request.GET.get('lng')
+    babysitter.save()
+    return HttpResponse('OK')
+
+
+def p_save_location(request):
+    parentName = request.user.username
+    parent = ModelUser.objects.filter(username=parentName).first()
+    fullparent = ModelParent.objects.filter(user=parent.id).first()
+    fullparent.lat = request.GET.get('lat')
+    fullparent.lng = request.GET.get('lng')
+    fullparent.save()
+    return HttpResponse('OK')
