@@ -24,7 +24,9 @@ def home(request):
                 price = request.POST.get('price') #salary_per_hour
                 kids = request.POST.get('kids') #max_kids
                 rating = request.POST.get('rating') #rating
-                results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids)).filter(rating__gte=float(rating))
+                distance = request.POST.get('distance')  # distance
+                results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids))\
+                    .filter(rating__gte=float(rating))
                 return render(request, 'babySitter/details.html', {"data": results})
             return render(request, 'babySitter/home.html')
 
