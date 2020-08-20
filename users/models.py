@@ -23,7 +23,7 @@ class ModelBabysitter(ModelUser):
     salary_per_hour = models.CharField(default='', max_length=3)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     one_to_five_choices = zip(range(1, 5 + 1), range(1, 5 + 1))
-    rating = models.PositiveSmallIntegerField(default=5, choices=one_to_five_choices)
+    rating = models.PositiveSmallIntegerField(default=3, choices=one_to_five_choices)
     lat = models.DecimalField(max_digits=10, decimal_places=7, null=True, blank=True)
     lng = models.DecimalField(max_digits=10, decimal_places=7, null=True, blank=True)
 
@@ -41,5 +41,3 @@ class ModelParent(ModelUser):
     phone_number = models.CharField(default='', max_length=10)
     num_of_kids = models.CharField(default='', max_length=2)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    lat = models.DecimalField(max_digits=10, decimal_places=7, null=True, blank=True)
-    lng = models.DecimalField(max_digits=10, decimal_places=7, null=True, blank=True)

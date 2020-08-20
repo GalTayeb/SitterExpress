@@ -34,9 +34,9 @@
                     <div class="form-group col-md-2">
                         <input type="number" min=1 max="5" class="form-control" id="rating" placeholder="Rating" name="rating">
                     </div>
-                    <div class="form-group col-md-2">
-                        <input type="number" min=0 step="0.01" max="2" class="form-control" id="distance" placeholder="Distance" name="distance">
-                    </div>
+{#                    <div class="form-group col-md-2">#}
+{#                        <input type="number" min=0 step="0.01" max="2" class="form-control" id="distance" placeholder="Distance" name="distance">#}
+{#                    </div>#}
                     <input name="lat" type="hidden" id="lat">
                     <input name="lng" type="hidden" id="lng">
                     <div class="form-group col-md-5">
@@ -97,11 +97,6 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVcAJzhMJ6r1nIitmyuOvV40Kj93f0XvM&callback=initMap">
     </script>
-  <script>  {% if user.is_parent %}
-                navigator.geolocation.getCurrentPosition(geo=>{
-                    fetch(`/p_save_location?lat=${geo.coords.latitude}&lng=${geo.coords.longitude}`)
-                });
-            {% endif %}</script>
   </body>
 </html>
 {% endblock content %}

@@ -68,20 +68,3 @@ def b_save_location(request):
     babysitter.lng = request.GET.get('lng')
     babysitter.save()
     return HttpResponse('OK')
-
-# def p_location(request):
-#
-#     results = ModelBabysitter.objects.filter(lat__gte=parentLat - 2, lng__gte=parentLng - 2).filter(lat__lte=parentLat + 2, lng__lte=parentLng + 2)
-#
-
-def p_save_location(request):
-    parentName = request.user.username
-    parent = ModelUser.objects.filter(username=parentName).first()
-    fullparent = ModelParent.objects.filter(user=parent.id).first()
-    fullparent.lat = request.GE.get('lat')
-    fullparent.lng = request.GET.get('lng')
-    fullparent.save()
-    return HttpResponse('OK')
-
-
-

@@ -3,9 +3,6 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 from users.models import ModelUser, ModelBabysitter, ModelParent
 
-import json
-from django.http import HttpResponse
-
 
 def about(request):
     return render(request, 'babySitter/about.html')
@@ -22,18 +19,12 @@ def home(request):
         elif request.user.is_parent:
             if request.method == 'POST':
 
-                price = request.POST.get('price') #salary_per_hour
-                kids = request.POST.get('kids') #max_kids
-                rating = request.POST.get('rating') #rating
-                lat = float(request.POST.get('lat'))
-                lng = float(request.POST.get('lng'))
-                radius = request.POST.get('radius')
-
-
-            # request.session['lat']
-            # request.session['lng']
-            # model.objects.filter(lat_gte=request.session['lat']-radius, lat_lte=request.session['lat']+radius) \
-                # .filter(lat_gte=request.session['lat']-radius, lat_lte=request.session['lat']+radius)
+                price = request.POST.get('price')  # salary_per_hour
+                kids = request.POST.get('kids')  # max_kids
+                rating = request.POST.get('rating')  # rating
+                lat = float(request.POST.get('lat'))  # lat
+                lng = float(request.POST.get('lng'))  # lng
+                # radius = request.POST.get('radius')
                 results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids))\
                      .filter(rating__gte=float(rating)).filter(lat__gte=lat - 2, lng__gte=lng - 2).filter(lat__lte=lat + 2, lng__lte=lng + 2)
                 return render(request, 'babySitter/details.html', {"data": results})
@@ -82,13 +73,7 @@ def p_orders(request):
     return render(request, 'babySitter/p_orders.html', {"data": p_orders})
 
 
-
-def rating(request):
-    return render(request, 'babySitter/rating.html')
-
-
 def thanks(request):
-
     if request.method == 'POST':
         sitter_id = request.session['sitter']
         sitter = ModelUser.objects.filter(id=sitter_id).first()
@@ -96,4 +81,3 @@ def thanks(request):
         babysitter.rating = request.POST.get('rating')
         babysitter.save()
         return render(request, 'babySitter/about.html')
-

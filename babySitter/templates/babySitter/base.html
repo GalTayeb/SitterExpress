@@ -31,7 +31,6 @@
                             <a class="nav-item nav-link" href="{% url 'babySitter-about' %}">About Us</a>
                         {% elif user.is_babysitter %}
                             <a class="nav-item nav-link" href="{% url 'babySitter-about' %}">About Us</a>
-                            <a class="nav-item nav-link" href="{% url 'babySitter-rating' %}">Rating</a>
                         {% endif %}
                     {% endif %}
                     {% if not user.is_authenticated %}
