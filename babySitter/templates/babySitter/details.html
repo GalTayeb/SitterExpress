@@ -1,95 +1,163 @@
 {% extends "babySitter/base.html" %}
 {% block content %}
-    <div class = "main">
-    <html>
-    <head>
-    <!-- Font Awesome Icon Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            body{
-                background-image: url('/media/Pic1.jpeg');
-                background-size: 1500px;
-            }
-            .checked {
-                color: orange;
-            }
-        </style>
-    </head>
-    <body>
-    <div class = "main">
-        <a href="{% url 'babySitter-home' %}" class="btn btn-outline-secondary">Back to find another BabySitter</a>
-        <br/><br/><br/>
-        {% for info in data %}
-            {% if info.available %}
-                <form method="POST" action="/details/">
-                {% csrf_token %}
-                <img class="rounded-circle account-img" src="/media/{{ info.image }}">
-                <h5>First Name: {{ info.first_name }}</h5>
-                <h5>Last Name: {{ info.last_name }}</h5>
-                <h5>Email Address: {{ info.email }}</h5>
-                <h5>Gender: {{ info.gender }}</h5>
-                <h5>Age: {{ info.age }}</h5>
-                <h5>ID Number: {{ info.id_number }}</h5>
-                <h5>Phone Number: {{ info.phone_number }}</h5>
-                <h5>Max Kids: {{ info.max_kids }}</h5>
-                <h5>Salary Per Hour: {{ info.salary_per_hour }}₪</h5>
-                {% if info.rating == 0 %}
-                <h5>Rating:
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                </h5>
-                {% elif info.rating == 1 %}
-                <h5>Rating:
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                </h5>
-                {% elif info.rating == 2 %}
-                <h5>Rating:
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                </h5>
-                {% elif info.rating == 3 %}
-                <h5>Rating:
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                </h5>
-                {% elif info.rating == 4 %}
-                <h5>Rating:
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                </h5>
-                {% elif info.rating == 5 %}
-                <h5>Rating:
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                </h5>
+    <div class="main">
+        <html>
+        <head>
+
+            <!-- Font Awesome Icon Library -->
+            <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <style>
+                body {
+                    background-image: url('/media/Pic1.jpeg');
+                    background-size: 1500px;
+                }
+
+                .checked {
+                    color: orange;
+                }
+
+                #map {
+                    height: 480px;
+                    width: 1100px;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="main">
+            <a href="{% url 'babySitter-home' %}" class="btn btn-outline-secondary">Back to find another BabySitter</a>
+            <br/><br/><br/>
+            {% for info in data %}
+                {% if info.available %}
+                    <form method="POST" action="/details/">
+                    {% csrf_token %}
+                    <img class="rounded-circle account-img" src="/media/{{ info.image }}">
+                    <h5>First Name: {{ info.first_name }}</h5>
+                    <h5>Last Name: {{ info.last_name }}</h5>
+                    <h5>Email Address: {{ info.email }}</h5>
+                    <h5>Gender: {{ info.gender }}</h5>
+                    <h5>Age: {{ info.age }}</h5>
+                    <h5>ID Number: {{ info.id_number }}</h5>
+                    <h5>Phone Number: {{ info.phone_number }}</h5>
+                    <h5>Max Kids: {{ info.max_kids }}</h5>
+                    <h5>Salary Per Hour: {{ info.salary_per_hour }}₪</h5>
+                    {% if info.rating == 0 %}
+                        <h5>Rating:
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </h5>
+                    {% elif info.rating == 1 %}
+                        <h5>Rating:
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </h5>
+                    {% elif info.rating == 2 %}
+                        <h5>Rating:
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </h5>
+                    {% elif info.rating == 3 %}
+                        <h5>Rating:
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </h5>
+                    {% elif info.rating == 4 %}
+                        <h5>Rating:
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </h5>
+                    {% elif info.rating == 5 %}
+                        <h5>Rating:
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </h5>
+                    {% endif %}
+                    <br/>
+                    <button type="submit" class="btn btn-dark" value="{{ info.username }}" name="test">Order this
+                        BabySitter
+                    </button>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 {% endif %}
-                <br/>
-                <button type="submit" class="btn btn-dark" value="{{ info.username }}" name="test">Order this BabySitter</button>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            {% endif %}
-        {% endfor %}
-        </form>
-    </div>
-    </body>
-    </html>
+            {% endfor %}
+            </form>
+            <div id="map"></div>
+            <script>
+                // Note: This example requires that you consent to location sharing when
+                // prompted by your browser. If you see the error "The Geolocation service
+                // failed.", it means you probably did not give permission for the browser to
+                // locate you.
+                var map, infoWindow;
+
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: -34.397, lng: 150.644},
+                        zoom: 16
+                    });
+                    infoWindow = new google.maps.InfoWindow;
+
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent("I'm Here!");
+                            infoWindow.open(map);
+                            map.setCenter(pos);
+
+                            let myLatlng, marker;
+                            {% for info in data %}
+                                 myLatlng = new google.maps.LatLng({{info.lat}}, {{info.lng}});
+
+                                marker = new google.maps.Marker({
+                                    position: myLatlng,
+                                    title: "{{info.username}}"
+                                });
+                                marker.setMap(map);
+                            {% endfor %}
+                        }, function () {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                    }
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                    infoWindow.open(map);
+                }
+            </script>
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVcAJzhMJ6r1nIitmyuOvV40Kj93f0XvM&callback=initMap">
+            </script>
+        </div>
+        </body>
+        </html>
     </div>
 {% endblock content %}

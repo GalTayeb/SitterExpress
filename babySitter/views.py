@@ -21,13 +21,21 @@ def home(request):
             return redirect('babySitter-b_orders')
         elif request.user.is_parent:
             if request.method == 'POST':
-                parentLat = request.POST.get('lat')
-                parentLng = request.POST.get('lng')
+
                 price = request.POST.get('price') #salary_per_hour
                 kids = request.POST.get('kids') #max_kids
                 rating = request.POST.get('rating') #rating
+                lat = float(request.POST.get('lat'))
+                lng = float(request.POST.get('lng'))
+                radius = request.POST.get('radius')
+
+
+            # request.session['lat']
+            # request.session['lng']
+            # model.objects.filter(lat_gte=request.session['lat']-radius, lat_lte=request.session['lat']+radius) \
+                # .filter(lat_gte=request.session['lat']-radius, lat_lte=request.session['lat']+radius)
                 results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids))\
-                     .filter(rating__gte=float(rating))#.filter(lat__gte=int(parentLat - 2), lng__gte=int(parentLng - 2)).filter(lat__lte=int(parentLat + 2), lng__lte=int(parentLng + 2))
+                     .filter(rating__gte=float(rating)).filter(lat__gte=lat - 2, lng__gte=lng - 2).filter(lat__lte=lat + 2, lng__lte=lng + 2)
                 return render(request, 'babySitter/details.html', {"data": results})
             return render(request, 'babySitter/home.html')
 
