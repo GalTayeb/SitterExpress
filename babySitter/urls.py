@@ -10,4 +10,5 @@ urlpatterns = [
     path('b_orders/', views.b_orders, name='babySitter-b_orders'),
     path('p_orders/', views.p_orders, name='babySitter-p_orders'),
     path('thanks/', views.thanks, name='babySitter-thanks'),
+    path('rating/', views.rating, name='babySitter-rating'),
 ]

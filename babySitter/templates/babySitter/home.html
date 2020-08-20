@@ -67,6 +67,9 @@
               lng: position.coords.longitude
             };
 
+            fetch(`/home?lat=${position.coords.latitude}&lng=${position.coords.longitude}`)
+
+
             infoWindow.setPosition(pos);
             infoWindow.setContent("I'm Here!");
             infoWindow.open(map);
@@ -92,12 +95,5 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVcAJzhMJ6r1nIitmyuOvV40Kj93f0XvM&callback=initMap">
     </script>
   </body>
-  <script>
-  {% if user.is_parent %}
-      navigator.geolocation.getCurrentPosition(geo=>{
-          fetch(`/p_save_location?lat=${geo.coords.latitude}&lng=${geo.coords.longitude}`)
-      });
-  {% endif %}
-  </script>
 </html>
 {% endblock content %}

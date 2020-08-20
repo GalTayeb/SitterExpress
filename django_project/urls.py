@@ -29,7 +29,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('babySitter.urls')),
     path('b_save_location/', user_views.b_save_location, name='b_save_location'),
-    path('p_save_location/', user_views.p_save_location, name='p_save_location'),
+    # path('p_location/', user_views.p_location, name='p_location'),
 ]
 
 
