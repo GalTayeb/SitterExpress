@@ -27,7 +27,7 @@
                 <div class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         {% if user.is_parent %}
-                            <a class="nav-item nav-link" href="{% url 'babySitter-home' %}">Home Page</a>
+                            <a class="nav-item nav-link" href="{% url 'babySitter-home' %}">Make an Order</a>
                             <a class="nav-item nav-link" href="{% url 'babySitter-about' %}">About Us</a>
                         {% elif user.is_babysitter %}
                             <a class="nav-item nav-link" href="{% url 'babySitter-about' %}">About Us</a>
