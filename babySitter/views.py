@@ -26,7 +26,7 @@ def home(request):
                 lng = float(request.POST.get('lng'))  # lng
                 # radius = request.POST.get('radius')
                 results = ModelBabysitter.objects.filter(salary_per_hour__lte=int(price)).filter(max_kids__gte=int(kids))\
-                     .filter(rating__gte=float(rating)).filter(lat__gte=lat - 2, lng__gte=lng - 2).filter(lat__lte=lat + 2, lng__lte=lng + 2)
+                     .filter(rating__gte=float(rating)).filter(lat__gte=lat - 0.5, lng__gte=lng - 0.5).filter(lat__lte=lat + 0.5, lng__lte=lng + 0.5)
                 return render(request, 'babySitter/details.html', {"data": results})
             return render(request, 'babySitter/home.html')
 
